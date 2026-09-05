@@ -6,6 +6,7 @@ import {
   PanelLeftOpen,
   LogOut,
   LayoutGrid,
+  X,
 } from 'lucide-react';
 import { navigationConfig } from '../../../config/navigation.js';
 import { usePermission } from '../../hooks/usePermission.js';
@@ -29,6 +30,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navigate = useNavigate();
   const { hasPermission, isSuperAdmin } = usePermission();
   const { user, logout } = useAuth();
+
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const effectiveCollapsed = isCollapsed && !isMobile;
 
   // Track expanded groups in accordion (Expanded mode)
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
@@ -58,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, [location.pathname]);
 
   const toggleGroup = (groupId: string) => {
-    if (isCollapsed) {
+    if (effectiveCollapsed) {
       onToggleCollapse();
       setExpandedGroups((prev) => ({ ...prev, [groupId]: true }));
       return;
@@ -84,7 +95,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         className={cn(
           'fixed top-0 bottom-0 left-0 z-50 bg-sidebar border-r border-subtle flex flex-col transition-all duration-300 ease-in-out select-none',
           // Desktop sizing & overflow behavior
-          isCollapsed ? 'lg:w-20 overflow-visible' : 'lg:w-64 overflow-hidden',
+          effectiveCollapsed ? 'lg:w-20 overflow-visible' : 'lg:w-64 overflow-hidden',
           // Mobile open/close drawer
           isOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0'
         )}
@@ -95,13 +106,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div
           className={cn(
             'h-20 flex items-center border-b border-subtle transition-all duration-300 shrink-0',
-            isCollapsed ? 'justify-center px-0' : 'justify-between px-5'
+            effectiveCollapsed ? 'justify-center px-0' : 'justify-between px-5'
           )}
         >
           {/* Logo & Brand Title */}
           <div
             onClick={() => {
-              if (isCollapsed) onToggleCollapse();
+              if (effectiveCollapsed) onToggleCollapse();
               else navigate('/dashboard');
             }}
             className="flex items-center space-x-3 cursor-pointer group"
@@ -114,7 +125,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
 
             {/* Brand Title (hidden when collapsed) */}
-            {!isCollapsed && (
+            {!effectiveCollapsed && (
               <div className="flex flex-col overflow-hidden transition-all duration-300">
                 <h1 className="font-bold text-base tracking-tight text-txt-primary font-sans">
                   StayNova
@@ -122,6 +133,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
             )}
           </div>
+
+          {/* Mobile Close Button */}
+          {!effectiveCollapsed && isMobile && (
+            <button
+              onClick={onClose}
+              className="lg:hidden w-8 h-8 flex items-center justify-center rounded-xl bg-surface/50 border border-subtle text-txt-secondary hover:text-txt-primary hover:bg-muted/80 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
 
         {/* =========================================================
@@ -130,7 +151,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div
           className={cn(
             'flex-1 px-3 py-4 space-y-2.5',
-            isCollapsed
+            effectiveCollapsed
               ? 'overflow-visible'
               : 'overflow-y-auto overflow-x-hidden custom-scrollbar'
           )}
@@ -152,7 +173,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             const GroupIcon = group.icon;
 
             // --- COLLAPSED MODE (Exact Match to Reference Screenshot) ---
-            if (isCollapsed) {
+            if (effectiveCollapsed) {
               if (filteredItems.length === 1 && group.id === 'overview') {
                 const singleItem = filteredItems[0];
                 const ItemIcon = singleItem.icon;
@@ -406,7 +427,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             3. SIDEBAR FOOTER (User Session Card matching Image 2)
            ========================================================= */}
         <div className="p-3 border-t border-subtle shrink-0">
-          {isCollapsed ? (
+          {effectiveCollapsed ? (
             <div className="flex flex-col items-center space-y-2">
               <button
                 onClick={onToggleCollapse}
