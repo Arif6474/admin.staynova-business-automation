@@ -57,7 +57,7 @@ export const LoginPage: React.FC = () => {
           <span className="font-serif font-black text-slate-950 text-2xl tracking-tighter">SN</span>
         </div>
         <h3 className="text-xl font-bold text-txt-primary uppercase tracking-wider font-mono">
-          StayNova ERP Login
+          StayNova  Login
         </h3>
         <p className="text-xs text-txt-muted mt-1">
           Enter your organization credentials to access the management portal

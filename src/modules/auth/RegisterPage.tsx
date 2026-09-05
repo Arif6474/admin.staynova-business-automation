@@ -59,7 +59,7 @@ export const RegisterPage: React.FC = () => {
           Create Organization
         </h3>
         <p className="text-xs text-txt-muted mt-1">
-          Set up a new StayNova ERP tenant & Super Admin
+          Set up a new StayNova  tenant & Super Admin
         </p>
       </div>
 

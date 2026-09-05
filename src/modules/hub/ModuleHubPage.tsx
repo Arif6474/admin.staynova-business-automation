@@ -13,35 +13,35 @@ export interface ModuleHubPageProps {
 // Curated modern color accents for the Hub cards matching reference screenshots
 const cardThemes = [
   {
-    iconBg: 'bg-cyan-950/40 border-cyan-500/30 text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]',
+    iconBg: 'bg-cyan-100 dark:bg-cyan-950/40 border-cyan-200 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]',
     tag: 'Cyan',
   },
   {
-    iconBg: 'bg-purple-950/40 border-purple-500/30 text-purple-400 group-hover:border-purple-400 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]',
+    iconBg: 'bg-purple-100 dark:bg-purple-950/40 border-purple-200 dark:border-purple-500/30 text-purple-700 dark:text-purple-400 group-hover:border-purple-400 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]',
     tag: 'Purple',
   },
   {
-    iconBg: 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400 group-hover:border-emerald-400 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 group-hover:border-emerald-400 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]',
     tag: 'Emerald',
   },
   {
-    iconBg: 'bg-amber-950/40 border-amber-500/30 text-amber-400 group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]',
+    iconBg: 'bg-amber-100 dark:bg-amber-950/40 border-amber-200 dark:border-amber-500/30 text-amber-700 dark:text-amber-400 group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]',
     tag: 'Amber',
   },
   {
-    iconBg: 'bg-rose-950/40 border-rose-500/30 text-rose-400 group-hover:border-rose-400 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.2)]',
+    iconBg: 'bg-rose-100 dark:bg-rose-950/40 border-rose-200 dark:border-rose-500/30 text-rose-700 dark:text-rose-400 group-hover:border-rose-400 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(244,63,94,0.2)]',
     tag: 'Rose',
   },
   {
-    iconBg: 'bg-blue-950/40 border-blue-500/30 text-blue-400 group-hover:border-blue-400 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]',
+    iconBg: 'bg-blue-100 dark:bg-blue-950/40 border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-400 group-hover:border-blue-400 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]',
     tag: 'Blue',
   },
   {
-    iconBg: 'bg-indigo-950/40 border-indigo-500/30 text-indigo-400 group-hover:border-indigo-400 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.2)]',
+    iconBg: 'bg-indigo-100 dark:bg-indigo-950/40 border-indigo-200 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-400 group-hover:border-indigo-400 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(99,102,241,0.2)]',
     tag: 'Indigo',
   },
   {
-    iconBg: 'bg-teal-950/40 border-teal-500/30 text-teal-400 group-hover:border-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.2)]',
+    iconBg: 'bg-teal-100 dark:bg-teal-950/40 border-teal-200 dark:border-teal-500/30 text-teal-700 dark:text-teal-400 group-hover:border-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.15)] dark:group-hover:shadow-[0_0_20px_rgba(20,184,166,0.2)]',
     tag: 'Teal',
   },
 ];
@@ -81,7 +81,7 @@ export const ModuleHubPage: React.FC<ModuleHubPageProps> = ({
             <Link
               key={item.href}
               to={item.href}
-              className="bg-card border border-white/[0.035] rounded-3xl p-6 hover:border-white/[0.08] hover:bg-card-hover hover:scale-[1.01] transition-all duration-200 cursor-pointer flex flex-col justify-between group min-h-[160px] shadow-xs"
+              className="bg-card border border-subtle rounded-3xl p-6 hover:border-brand-500/30 hover:bg-card-hover hover:scale-[1.01] transition-all duration-200 cursor-pointer flex flex-col justify-between group min-h-[160px] shadow-xs"
             >
               {/* Top: Icon Badge Container */}
               <div className="flex items-start justify-between">

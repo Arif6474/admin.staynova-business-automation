@@ -1,4 +1,4 @@
-# StayNova ERP — Business Automation Admin Portal
+# StayNova  — Business Automation Admin Portal
 
 High-performance, enterprise-grade admin web application built with **React, TypeScript, Vite, TailwindCSS, and TanStack Query**.
 

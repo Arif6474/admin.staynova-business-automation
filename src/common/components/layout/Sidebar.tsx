@@ -252,25 +252,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           );
                         })}
                       </div>
-
-                      {/* More Modules / Hub Link at bottom of Flyout */}
-                      {group.hubHref && (
-                        <div className="pt-2 mt-1.5 border-t border-subtle">
-                          <NavLink
-                            to={group.hubHref}
-                            onClick={() => onClose()}
-                            className={cn(
-                              'flex items-center space-x-3 px-3 py-2.5 rounded-2xl text-xs font-bold transition-colors',
-                              location.pathname === group.hubHref
-                                ? 'text-brand-500 bg-brand-500/15 font-bold'
-                                : 'text-txt-muted hover:text-brand-500 hover:bg-muted/60'
-                            )}
-                          >
-                            <LayoutGrid className="w-4 h-4 shrink-0" />
-                            <span>More Modules ({group.groupTitle})</span>
-                          </NavLink>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -399,23 +380,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         </NavLink>
                       );
                     })}
-
-                    {/* More Modules Link in Accordion */}
-                    {group.hubHref && (
-                      <NavLink
-                        to={group.hubHref}
-                        onClick={() => onClose()}
-                        className={cn(
-                          'flex items-center space-x-3 px-3 py-2 rounded-xl text-xs font-semibold transition-colors mt-1',
-                          location.pathname === group.hubHref
-                            ? 'text-brand-500 bg-brand-500/15 font-bold'
-                            : 'text-txt-dimmed hover:text-brand-500 hover:bg-muted/40'
-                        )}
-                      >
-                        <LayoutGrid className="w-3.5 h-3.5 shrink-0" />
-                        <span>More Modules Hub</span>
-                      </NavLink>
-                    )}
                   </div>
                 </div>
               </div>
