@@ -176,8 +176,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     </NavLink>
 
                     {/* Floating Tooltip */}
-                    <div className="absolute left-[76px] top-2 px-3 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-subtle text-xs font-semibold text-txt-primary whitespace-nowrap shadow-xl opacity-0 translate-x-2 pointer-events-none group-hover/flyout:opacity-100 group-hover/flyout:translate-x-0 transition-all duration-200 z-50">
-                      {singleItem.title}
+                    <div className="absolute left-full top-2 pl-3 opacity-0 translate-x-2 pointer-events-none group-hover/flyout:opacity-100 group-hover/flyout:translate-x-0 group-hover/flyout:pointer-events-auto transition-all duration-200 z-50">
+                      <div className="px-3 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-subtle text-xs font-semibold text-txt-primary whitespace-nowrap shadow-xl">
+                        {singleItem.title}
+                      </div>
                     </div>
                   </div>
                 );
@@ -199,54 +201,56 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </NavLink>
 
                   {/* Sleek Floating Flyout Popup Menu matching Screenshot */}
-                  <div className="absolute left-[76px] top-0 min-w-[240px] p-3 rounded-3xl bg-surface/98 backdrop-blur-2xl border border-subtle shadow-2xl opacity-0 translate-x-2 pointer-events-none group-hover/flyout:opacity-100 group-hover/flyout:translate-x-0 group-hover/flyout:pointer-events-auto transition-all duration-200 z-50 space-y-1.5">
-                    {/* Flyout Header */}
-                    <div className="px-3 py-1 text-[11px] font-bold text-txt-dimmed uppercase tracking-wider font-mono">
-                      {group.groupTitle}
-                    </div>
+                  <div className="absolute left-full top-0 pl-3 min-w-[252px] opacity-0 translate-x-2 pointer-events-none group-hover/flyout:opacity-100 group-hover/flyout:translate-x-0 group-hover/flyout:pointer-events-auto transition-all duration-200 z-50">
+                    <div className="p-3 rounded-3xl bg-surface/98 backdrop-blur-2xl border border-subtle shadow-2xl space-y-1.5">
+                      {/* Flyout Header */}
+                      <div className="px-3 py-1 text-[11px] font-bold text-txt-dimmed uppercase tracking-wider font-mono">
+                        {group.groupTitle}
+                      </div>
 
-                    {/* Flyout Sub-items */}
-                    <div className="space-y-0.5">
-                      {filteredItems.map((child) => {
-                        const ChildIcon = child.icon;
-                        const isChildActive = location.pathname === child.href;
-                        return (
+                      {/* Flyout Sub-items */}
+                      <div className="space-y-0.5">
+                        {filteredItems.map((child) => {
+                          const ChildIcon = child.icon;
+                          const isChildActive = location.pathname === child.href;
+                          return (
+                            <NavLink
+                              key={child.href}
+                              to={child.href}
+                              onClick={() => onClose()}
+                              className={cn(
+                                'flex items-center space-x-3 px-3 py-2.5 rounded-2xl text-xs font-semibold transition-all duration-150',
+                                isChildActive
+                                  ? 'text-brand-500 bg-brand-500/15 font-bold border border-brand-500/30'
+                                  : 'text-txt-secondary hover:text-txt-primary hover:bg-muted/70'
+                              )}
+                            >
+                              <ChildIcon className="w-4 h-4 shrink-0 text-txt-dimmed" />
+                              <span className="truncate">{child.title}</span>
+                            </NavLink>
+                          );
+                        })}
+                      </div>
+
+                      {/* More Modules / Hub Link at bottom of Flyout */}
+                      {group.hubHref && (
+                        <div className="pt-2 mt-1.5 border-t border-subtle">
                           <NavLink
-                            key={child.href}
-                            to={child.href}
+                            to={group.hubHref}
                             onClick={() => onClose()}
                             className={cn(
-                              'flex items-center space-x-3 px-3 py-2.5 rounded-2xl text-xs font-semibold transition-all duration-150',
-                              isChildActive
-                                ? 'text-brand-500 bg-brand-500/15 font-bold border border-brand-500/30'
-                                : 'text-txt-secondary hover:text-txt-primary hover:bg-muted/70'
+                              'flex items-center space-x-3 px-3 py-2.5 rounded-2xl text-xs font-bold transition-colors',
+                              location.pathname === group.hubHref
+                                ? 'text-brand-500 bg-brand-500/15 font-bold'
+                                : 'text-txt-muted hover:text-brand-500 hover:bg-muted/60'
                             )}
                           >
-                            <ChildIcon className="w-4 h-4 shrink-0 text-txt-dimmed" />
-                            <span className="truncate">{child.title}</span>
+                            <LayoutGrid className="w-4 h-4 shrink-0" />
+                            <span>More Modules ({group.groupTitle})</span>
                           </NavLink>
-                        );
-                      })}
+                        </div>
+                      )}
                     </div>
-
-                    {/* More Modules / Hub Link at bottom of Flyout */}
-                    {group.hubHref && (
-                      <div className="pt-2 mt-1.5 border-t border-subtle">
-                        <NavLink
-                          to={group.hubHref}
-                          onClick={() => onClose()}
-                          className={cn(
-                            'flex items-center space-x-3 px-3 py-2.5 rounded-2xl text-xs font-bold transition-colors',
-                            location.pathname === group.hubHref
-                              ? 'text-brand-500 bg-brand-500/15 font-bold'
-                              : 'text-txt-muted hover:text-brand-500 hover:bg-muted/60'
-                          )}
-                        >
-                          <LayoutGrid className="w-4 h-4 shrink-0" />
-                          <span>More Modules ({group.groupTitle})</span>
-                        </NavLink>
-                      </div>
-                    )}
                   </div>
                 </div>
               );
