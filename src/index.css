@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* =========================================================
+     LIGHT THEME VARIABLES (StayNova Champagne & Slate)
+     ========================================================= */
+  :root {
+    /* Base Backgrounds */
+    --color-bg-app: #f4f6fb;
+    --color-bg-surface: #ffffff;
+    --color-bg-card: #ffffff;
+    --color-bg-card-hover: #f8fafc;
+    --color-bg-muted: #eef2f8;
+    --color-bg-input: #f8fafc;
+    --color-bg-sidebar: #ffffff;
+    --color-bg-topbar: rgba(255, 255, 255, 0.92);
+
+    /* Borders & Dividers (Clean, soft light grey with reduced opacity) */
+    --color-border-subtle: rgba(245, 200, 37, 0.06);
+    --color-border-default: rgba(0, 0, 0, 0.10);
+    --color-border-strong: rgba(0, 0, 0, 0.16);
+
+    /* Text & Typography */
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #334155;
+    --color-text-muted: #64748b;
+    --color-text-dimmed: #94a3b8;
+
+    /* StayNova Luxury Gold Brand Palette */
+    --color-brand-50: #fdfaf3;
+    --color-brand-100: #faf2de;
+    --color-brand-200: #f4e3ba;
+    --color-brand-300: #ecd08f;
+    --color-brand-400: #e2b960;
+    --color-brand-500: #c9982a;
+    --color-brand-600: #b0821d;
+    --color-brand-700: #8e6518;
+    --color-brand-800: #735119;
+    --color-brand-900: #5f4319;
+    --color-brand-950: #37230b;
+
+    /* Semantic Status Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-info: #0ea5e9;
+
+    /* Glassmorphism & Shadow Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-card-bg: #ffffff;
+    --glass-card-border: rgba(0, 0, 0, 0.06);
+    --panel-shadow: 0 4px 20px -2px rgba(11, 17, 32, 0.05);
+
+    /* Scrollbar */
+    --scrollbar-track: #f1f4fa;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+  }
+
+  /* =========================================================
+     DARK THEME VARIABLES (StayNova Luxury Obsidian & Gold)
+     ========================================================= */
+  .dark {
+    /* Base Backgrounds (Deep luxury charcoal/obsidian with subtle warmth) */
+    --color-bg-app: #090a0f;
+    --color-bg-surface: #0f1118;
+    --color-bg-card: #12141c;
+    --color-bg-card-hover: #171a24;
+    --color-bg-muted: #171a24;
+    --color-bg-input: #0c0e14;
+    --color-bg-sidebar: #0a0b10;
+    --color-bg-topbar: rgba(10, 11, 16, 0.9);
+
+    /* Borders & Dividers (Ultra-subtle, soft, reduced opacity) */
+    --color-border-subtle: rgba(39, 119, 162, 0.4);
+    --color-border-default: rgba(255, 255, 255, 0.06);
+    --color-border-strong: rgba(255, 255, 255, 0.10);
+
+    /* Text & Typography */
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #7e8fa9;
+    --color-text-dimmed: #52627e;
+
+    /* StayNova Luxury Gold Brand Palette */
+    --color-brand-50: #fdfaf3;
+    --color-brand-100: #faf2de;
+    --color-brand-200: #f4e3ba;
+    --color-brand-300: #ecd08f;
+    --color-brand-400: #e2b960;
+    --color-brand-500: #dfa745; /* Core StayNova Warm Amber Gold */
+    --color-brand-600: #c59232;
+    --color-brand-700: #9e7120;
+    --color-brand-800: #7f5a1e;
+    --color-brand-900: #694a1d;
+    --color-brand-950: #3b270c;
+
+    /* Semantic Status Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-info: #38bdf8;
+
+    /* Glassmorphism & Shadow Tokens */
+    --glass-bg: rgba(15, 17, 24, 0.92);
+    --glass-border: rgba(255, 255, 255, 0.035);
+    --glass-card-bg: rgba(18, 20, 28, 0.85);
+    --glass-card-border: rgba(255, 255, 255, 0.035);
+    --panel-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.65);
+
+    /* Scrollbar */
+    --scrollbar-track: #090a0f;
+    --scrollbar-thumb: #171a24;
+    --scrollbar-thumb-hover: #232736;
+  }
+
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border-subtle);
+  }
+
+  body {
+    background-color: var(--color-bg-app);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Chrome / Safari / Edge Autofill Override to preserve Dark / Light mode styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-bg-input) inset !important;
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: var(--color-text-primary) !important;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--panel-shadow);
+}
+
+.glass-card {
+  background: var(--glass-card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-card-border);
+  box-shadow: var(--panel-shadow);
+}
+
+/* Active Nav Pill glow */
+.nav-pill-active {
+  background: rgba(223, 167, 69, 0.10);
+  border: 1px solid rgba(223, 167, 69, 0.25);
+  box-shadow: 0 0 15px rgba(223, 167, 69, 0.10);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
